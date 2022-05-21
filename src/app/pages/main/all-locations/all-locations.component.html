@@ -1,0 +1,19 @@
+<div
+  class="row px-0 mx-0 h-100"
+  *ngIf="allLocations.currentLocations$ | async as currentLocations"
+  [ngClass]="{ 'flex-flow-column': screenSize.screenWidth < 992 }"
+>
+  <div class="col-lg-3 px-0 h-fc" *ngIf="currentLocations?.length">
+    <app-list-of-locations
+      [marks]="currentLocations"
+      [screenSize]="screenSize.screenWidth"
+      (onRemoveLocation)="allLocations.delete($event)"
+    ></app-list-of-locations>
+  </div>
+  <div
+    class="col-lg-9 px-0 flex-1-1-auto"
+    [ngClass]="{ 'w-100': currentLocations.length === 0 }"
+  >
+    <app-main-map [marksToShow]="currentLocations"></app-main-map>
+  </div>
+</div>

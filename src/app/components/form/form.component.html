@@ -1,0 +1,36 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  class="d-flex h-100 flex-column justify-content-center"
+  style="padding: 0 10%"
+>
+  <h5 class="display-5 mb-3 text-center">{{ header }}</h5>
+  <div *ngFor="let input of inputs" class="form-floating mb-3">
+    <input
+      *ngIf="input.type !== 'textarea'"
+      [formControlName]="input.key"
+      [type]="input.type"
+      class="form-control border-3"
+      [id]="idComposer(input.span)"
+      [placeholder]="input.span"
+      [ngClass]="{
+        'border-danger': isError && form.controls[input.key].invalid
+      }"
+    />
+    <textarea
+      *ngIf="input.type === 'textarea'"
+      [formControlName]="input.key"
+      class="form-control border-3"
+      [id]="idComposer(input.span)"
+      [placeholder]="input.span"
+      [ngClass]="{
+        'border-danger': isError && form.controls[input.key].invalid
+      }"
+      style="height: calc(7rem + 2px)"
+    ></textarea>
+    <label [for]="idComposer(input.span)"> {{ input.span }} </label>
+  </div>
+  <div class="d-grid gap-1-rem auto-fit-columns">
+    <ng-content></ng-content>
+  </div>
+</form>

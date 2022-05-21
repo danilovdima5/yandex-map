@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  template: '<router-outlet></router-outlet><app-toast></app-toast>',
 })
-export class AppComponent {
-  title = 'YandexMap';
-}
+export class AppComponent {}

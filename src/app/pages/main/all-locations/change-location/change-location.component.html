@@ -1,0 +1,51 @@
+<div
+  class="row px-0 mx-0 h-100"
+  [ngClass]="{
+    'flex-flow-column': screenSize.screenWidth < 992
+  }"
+>
+  <div
+    class="col-lg-6 px-0"
+    [ngClass]="{
+      'h-fc': screenSize.screenWidth < 992,
+      my5p: screenSize.screenWidth < 992
+    }"
+  >
+    <app-form
+      (onSubmit)="onSubmit()"
+      [inputs]="newLocationInputs"
+      [formControl]="locationForm"
+      header="Change the location"
+    >
+      <button
+        type="button"
+        class="btn btn-danger mb-3"
+        style="height: calc(3.5rem + 2px)"
+        (click)="onDelete()"
+      >
+        Delete
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary mb-3"
+        style="height: calc(3.5rem + 2px)"
+        [disabled]="locationForm.disabled"
+      >
+        Save
+      </button>
+    </app-form>
+  </div>
+  <div
+    class="col-lg-6 px-0"
+    *ngIf="locationForm.value"
+    [ngClass]="{
+      'flex-1-1-auto': screenSize.screenWidth < 992
+    }"
+  >
+    <app-one-location-map
+      (onMapClick)="onMapClick($event)"
+      [markToShow]="locationForm.value"
+      [isNew]="false"
+    ></app-one-location-map>
+  </div>
+</div>

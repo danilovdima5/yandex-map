@@ -1,0 +1,48 @@
+<nav class="navbar navbar-dark navbar-expand-sm bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand pe-none">YandexMap</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#YandexMapNavbar"
+      aria-controls="YandexMapNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse"
+      id="YandexMapNavbar"
+      [ngClass]="{
+        'bg-primary': deviceType === 'small',
+        'open-navbar': deviceType === 'small'
+      }"
+    >
+      <ul class="navbar-nav w-100 justify-content-end">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="all-locations"
+            routerLinkActive="active"
+            >All locations</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/all-locations/new">New location</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="my-account" routerLinkActive="active"
+            >My account</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="login" (click)="userService.logout()"
+            >Log out</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

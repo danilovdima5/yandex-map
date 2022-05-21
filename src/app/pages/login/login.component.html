@@ -1,0 +1,39 @@
+<div class="container h-100 d-flex align-items-center justify-content-center">
+  <div class="row w-100">
+    <h1 class="col-12 display-1 text-center">YandexMap</h1>
+    <div class="col-lg-6">
+      <app-form
+        [inputs]="signInputs"
+        [formControl]="signInForm"
+        header="Sign In"
+        (onSubmit)="onSubmit(URLS.signIn, signInForm)"
+      >
+        <button
+          type="submit"
+          class="btn btn-primary w-100 mb-3"
+          style="height: calc(3.5rem + 2px)"
+          [disabled]="signInForm.disabled"
+        >
+          Sign In
+        </button>
+      </app-form>
+    </div>
+    <div class="col-lg-6">
+      <app-form
+        [inputs]="signInputs"
+        [formControl]="signUpForm"
+        header="Sign Up"
+        (onSubmit)="onSubmit(URLS.signUp, signUpForm)"
+      >
+        <button
+          type="submit"
+          class="btn btn-primary w-100 mb-3"
+          style="height: calc(3.5rem + 2px)"
+          [disabled]="signUpForm.disabled"
+        >
+          Sign Up
+        </button>
+      </app-form>
+    </div>
+  </div>
+</div>

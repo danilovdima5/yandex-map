@@ -1,0 +1,43 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-primary py-0">
+  <div
+    class="container-fluid px-3 py-2"
+    [ngClass]="{ 'd-block': screenSize >= 992 }"
+  >
+    <a class="navbar-brand pe-none">Your locations</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#YourLocationsNavbar"
+      aria-controls="YourLocationsNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse"
+      id="YourLocationsNavbar"
+      [ngClass]="{
+        'bg-primary': screenSize < 992,
+        'open-navbar': screenSize < 992
+      }"
+      [ngStyle]="{ overflow: 'auto', 'max-height': 'calc(100vh - 102px)' }"
+    >
+      <ul class="navbar-nav w-100 d-block">
+        <li
+          class="nav-item"
+          *ngFor="let mark of marks; let i = index"
+          [routerLink]="mark.locationID"
+        >
+          <div class="card w-100 my-3">
+            <div class="card-body gray-on-hover cursor-pointer">
+              <h5 class="card-title">{{ mark.title }}</h5>
+              <p class="card-text">{{ mark.description }}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
