@@ -30,8 +30,8 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@main
         with:
-          name: dist
-          path: dist
+          name: yandex-map
+          path: dist/yandex-map
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
