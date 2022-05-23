@@ -34,8 +34,6 @@ const signInputs: InputItem[] = [
   },
 ];
 
-const animationDuration = 500;
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -100,8 +98,8 @@ const animationDuration = 500;
 export class LoginComponent {
   constructor(
     private router: Router,
-    private userService: UserService,
-    private toastService: ToastService
+    private user: UserService,
+    private toast: ToastService
   ) {}
 
   signInForm = new FormControl(null);
@@ -113,7 +111,7 @@ export class LoginComponent {
   onSubmit(url: string, form: FormControl): void {
     form.disable();
 
-    this.userService
+    this.user
       .create(url, {
         ...form.value,
         returnSecureToken: true,
@@ -127,17 +125,11 @@ export class LoginComponent {
       .subscribe({
         next: () => {
           this.router.navigate(['/']);
-          this.toastService.showToast(
-            'From Firebase:',
-            'Logged in successfully'
-          );
+          this.toast.show('From Firebase:', 'Logged in successfully');
         },
         error: (err: HttpErrorResponse) => {
           const errMsg = err.error.error.message as HttpLoginError;
-          this.toastService.showToast(
-            'From Firebase:',
-            HttpErrorTranslation[errMsg]
-          );
+          this.toast.show('From Firebase:', HttpErrorTranslation[errMsg]);
         },
       });
   }

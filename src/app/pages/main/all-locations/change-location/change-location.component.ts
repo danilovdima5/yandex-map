@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocationPage } from '../../../../core/abstract/location-page.abstract';
 import { ScreenSizeService } from '../../../../core/shared/screen-size.service';
@@ -13,27 +13,30 @@ export class ChangeLocationComponent extends LocationPage {
   constructor(
     protected override allLocations: AllLocationsService,
     public override screenSize: ScreenSizeService,
-    protected activatedRoute: ActivatedRoute,
     protected override router: Router,
+    protected activatedRoute: ActivatedRoute,
     private toast: ToastService
   ) {
     super(allLocations, screenSize, router);
+    if (!this.LOCATION_ID) return;
 
     this.allLocations
-      .getOne(this.locationID)
+      .getOne(this.LOCATION_ID)
       .subscribe((response) => this.locationForm.setValue(response));
   }
 
-  private locationID = this.activatedRoute.snapshot.params['id'] as string;
+  LOCATION_ID: string | undefined = this.activatedRoute.snapshot.params?.['id'];
 
   onSubmit() {
+    if (!this.LOCATION_ID) return;
+
     this.locationForm.disable();
 
     this.allLocations
-      .update(this.locationID, this.locationForm.value)
+      .update(this.LOCATION_ID, this.locationForm.value)
       .subscribe(() => {
         this.locationForm.enable();
-        this.toast.showToast(
+        this.toast.show(
           'From: Firebase',
           `Location ${this.locationForm.value.title} saved`
         );
@@ -42,11 +45,13 @@ export class ChangeLocationComponent extends LocationPage {
   }
 
   onDelete() {
+    if (!this.LOCATION_ID) return;
+
     this.locationForm.disable();
 
-    this.allLocations.delete(this.locationID).subscribe(() => {
+    this.allLocations.delete(this.LOCATION_ID).subscribe(() => {
       this.locationForm.enable();
-      this.toast.showToast(
+      this.toast.show(
         'From: Firebase',
         `Location ${this.locationForm.value.title} deleted`
       );
