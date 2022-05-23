@@ -21,7 +21,7 @@
       }"
     >
       <ul class="navbar-nav w-100 justify-content-end">
-        <li class="nav-item">
+        <li class="nav-item" onHover>
           <a
             class="nav-link"
             routerLink="all-locations"
@@ -29,15 +29,15 @@
             >All locations</a
           >
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onHover>
           <a class="nav-link" routerLink="/all-locations/new">New location</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onHover>
           <a class="nav-link" routerLink="my-account" routerLinkActive="active"
             >My account</a
           >
         </li>
-        <li class="nav-item">
+        <li class="nav-item" onHover>
           <a class="nav-link" routerLink="login" (click)="userService.logout()"
             >Log out</a
           >
