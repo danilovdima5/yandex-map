@@ -11,6 +11,15 @@ import {
   HttpLoginError,
   HttpErrorTranslation,
 } from '../../core/api/http-errors-translations';
+import {
+  animate,
+  group,
+  style,
+  transition,
+  trigger,
+  useAnimation,
+} from '@angular/animations';
+import { slideInLeft, slideInRight, slideInUp } from 'ng-animate';
 
 const signInputs: InputItem[] = [
   {
@@ -25,10 +34,68 @@ const signInputs: InputItem[] = [
   },
 ];
 
+const animationDuration = 500;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('appearFromLeft', [
+      transition(':enter', [
+        group([
+          style({ opacity: 0 }),
+          animate(
+            500,
+            style({
+              opacity: 1,
+            })
+          ),
+          useAnimation(slideInLeft, {
+            params: {
+              timing: 0.5,
+            },
+          }),
+        ]),
+      ]),
+    ]),
+    trigger('appearFromRight', [
+      transition(':enter', [
+        group([
+          style({ opacity: 0 }),
+          animate(
+            500,
+            style({
+              opacity: 1,
+            })
+          ),
+          useAnimation(slideInRight, {
+            params: {
+              timing: 0.5,
+            },
+          }),
+        ]),
+      ]),
+    ]),
+    trigger('appearFromTop', [
+      transition(':enter', [
+        group([
+          style({ opacity: 0 }),
+          animate(
+            500,
+            style({
+              opacity: 1,
+            })
+          ),
+          useAnimation(slideInUp, {
+            params: {
+              timing: 0.5,
+            },
+          }),
+        ]),
+      ]),
+    ]),
+  ],
 })
 export class LoginComponent {
   constructor(

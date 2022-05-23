@@ -1,7 +1,9 @@
-<div class="container h-100 d-flex align-items-center justify-content-center">
+<div
+  class="container h-100 d-flex align-items-center justify-content-center overflow-hidden"
+>
   <div class="row w-100">
-    <h1 class="col-12 display-1 text-center">YandexMap</h1>
-    <div class="col-lg-6">
+    <h1 class="col-12 display-1 text-center" [@appearFromTop]>YandexMap</h1>
+    <div class="col-lg-6" [@appearFromLeft]>
       <app-form
         [inputs]="signInputs"
         [formControl]="signInForm"
@@ -18,7 +20,7 @@
         </button>
       </app-form>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-6" [@appearFromRight]>
       <app-form
         [inputs]="signInputs"
         [formControl]="signUpForm"

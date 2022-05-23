@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ToastModule } from './components/toast/toast.module';
 import { AuthGuard } from './core/auth/auth.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
@@ -39,6 +40,7 @@ const routes: Routes = [
     BrowserModule,
     ToastModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   bootstrap: [AppComponent],
 })
