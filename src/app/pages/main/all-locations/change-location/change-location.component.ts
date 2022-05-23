@@ -27,9 +27,12 @@ export class ChangeLocationComponent extends LocationPage {
   private locationID = this.activatedRoute.snapshot.params['id'] as string;
 
   onSubmit() {
+    this.locationForm.disable();
+
     this.allLocations
       .update(this.locationID, this.locationForm.value)
       .subscribe(() => {
+        this.locationForm.enable();
         this.toast.showToast(
           'From: Firebase',
           `Location ${this.locationForm.value.title} saved`
@@ -39,7 +42,10 @@ export class ChangeLocationComponent extends LocationPage {
   }
 
   onDelete() {
+    this.locationForm.disable();
+
     this.allLocations.delete(this.locationID).subscribe(() => {
+      this.locationForm.enable();
       this.toast.showToast(
         'From: Firebase',
         `Location ${this.locationForm.value.title} deleted`

@@ -23,7 +23,10 @@ export class NewLocationComponent extends LocationPage {
   }
 
   onSubmit() {
+    this.locationForm.disable();
+
     this.allLocations.create(this.locationForm.value as Mark).subscribe(() => {
+      this.locationForm.enable();
       this.toast.showToast(
         'From: Firebase',
         `Location ${this.locationForm.value.title} saved`
