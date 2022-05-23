@@ -37,7 +37,7 @@ const signInputs: InputItem[] = [
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('appearFromLeft', [
       transition(':enter', [
