@@ -6,17 +6,17 @@ import { UserService } from '../shared/user.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
-  constructor(private userService: UserService) {}
+  constructor(private user: UserService) {}
 
   canActivate(): Promise<boolean> {
-    return this.userService.isAuthenticated();
+    return this.user.isAuthenticated();
   }
 
   canActivateChild(): Promise<boolean> {
-    return this.userService.isAuthenticated();
+    return this.user.isAuthenticated();
   }
 
   canLoad(): Promise<boolean> {
-    return this.userService.isAuthenticated();
+    return this.user.isAuthenticated();
   }
 }

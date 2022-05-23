@@ -16,7 +16,7 @@ export class ToastService {
     this.toastText = this.toastDiv.querySelector('.toast-body') as HTMLElement;
   }
 
-  public showToast(header: string, message: string) {
+  public show(header: string, message: string) {
     this.toastHeader.innerHTML = header;
     this.toastText.innerHTML = message;
 

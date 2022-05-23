@@ -8,7 +8,7 @@ import { UserService } from '../../core/shared/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  constructor(public userService: UserService) {}
+  constructor(public user: UserService) {}
 
   @Input() deviceType: DeviceTypes = 'small';
 }
